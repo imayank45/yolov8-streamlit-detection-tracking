@@ -12,7 +12,7 @@ agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 
 agentops.start_session()
 
-
+@agentops.record_function('sample function being record')
 def load_model(model_path):
     """
     Loads a YOLO object detection model from the specified model_path.
