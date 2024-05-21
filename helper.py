@@ -7,6 +7,10 @@ from pytube import YouTube
 import settings
 from agentops import record_function
 
+
+agentops.start_session()
+
+
 @agentops.record_function('sample function being record')
 def load_model(model_path):
     """
