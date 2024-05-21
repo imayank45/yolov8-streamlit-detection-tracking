@@ -26,7 +26,7 @@ def load_model(model_path):
     model = YOLO(model_path)
     return model
 
-
+@agentops.record_function('sample function being record')
 def display_tracker_options():
     display_tracker = st.radio("Display Tracker", ('Yes', 'No'))
     is_display_tracker = True if display_tracker == 'Yes' else False
@@ -35,7 +35,7 @@ def display_tracker_options():
         return is_display_tracker, tracker_type
     return is_display_tracker, None
 
-
+@agentops.record_function('sample function being record')
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
     """
     Display the detected objects on a video frame using the YOLOv8 model.
