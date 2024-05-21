@@ -5,8 +5,10 @@ import cv2
 from pytube import YouTube
 
 import settings
+import agentops
 from agentops import record_function
 
+agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 
 agentops.start_session()
 
