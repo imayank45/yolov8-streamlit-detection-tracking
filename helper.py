@@ -5,8 +5,9 @@ import cv2
 from pytube import YouTube
 
 import settings
+from agentops import record_function
 
-
+@agentops.record_function('sample function being record')
 def load_model(model_path):
     """
     Loads a YOLO object detection model from the specified model_path.
