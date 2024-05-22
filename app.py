@@ -127,6 +127,7 @@ def main():
         helper.play_youtube_video(confidence, model)
     else:
         st.error("Please select a valid source type!")
+    record(ActionEvent("event_type1"))
     agentops.end_session(end_state='Success')
 
 if __name__ == "__main__":
