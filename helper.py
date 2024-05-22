@@ -70,7 +70,7 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
                    channels="BGR",
                    use_column_width=True
                    )
-    agentops.end_session(end_state='Success')
+    
 
 @track_agent(name='youtube')
 def play_youtube_video(conf, model):
