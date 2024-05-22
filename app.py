@@ -11,6 +11,8 @@ import helper
 import agentops
 from agentops import record_function
 from agentops import record, ActionEvent
+from agentops.agent import track_agent
+
 
 agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 
