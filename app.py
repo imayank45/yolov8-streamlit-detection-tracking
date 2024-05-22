@@ -35,6 +35,7 @@ def display_main_title():
     st.title("Object Detection And Tracking using YOLOv8")
 
 # Function to display ML model configuration sidebar
+@track_agent(name='sidebar')
 def display_model_config_sidebar():
     st.sidebar.header("ML Model Config")
     model_type = st.sidebar.radio(
@@ -42,6 +43,7 @@ def display_model_config_sidebar():
     confidence = float(st.sidebar.slider(
         "Select Model Confidence", 25, 100, 40)) / 100
     return model_type, confidence
+    agentops.end_session(end_state='Success')
 
 # Function to load pre-trained ML model
 def load_pretrained_model(model_type):
@@ -65,6 +67,7 @@ def display_image_video_config_sidebar():
     return source_radio
 
 # Function to display uploaded image and detect objects
+@agentops.record_function('Images')
 def display_uploaded_image_and_detection(model, confidence, source_img):
     col1, col2 = st.columns(2)
     with col1:
@@ -96,7 +99,10 @@ def display_uploaded_image_and_detection(model, confidence, source_img):
                 except Exception as ex:
                     st.write("No image is uploaded yet!")
 
+    agentops.end_session(end_state='Success')
+
 # Main function
+@agentops.record_function('Main function')
 def main():
     set_page_layout()
     display_main_title()
@@ -119,6 +125,7 @@ def main():
         helper.play_youtube_video(confidence, model)
     else:
         st.error("Please select a valid source type!")
+    agentops.end_session(end_state='Success')
 
 if __name__ == "__main__":
     main()
