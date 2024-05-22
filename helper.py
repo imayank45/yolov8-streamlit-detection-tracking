@@ -9,6 +9,8 @@ from agentops.agent import track_agent
 import settings
 import agentops
 from agentops import record_function
+from agentops import record, ActionEvent
+
 
 agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 
@@ -36,6 +38,7 @@ def display_tracker_options():
         tracker_type = st.radio("Tracker", ("bytetrack.yaml", "botsort.yaml"))
         return is_display_tracker, tracker_type
     return is_display_tracker, None
+    record(ActionEvent("event_type1"))
 
 @agentops.record_function('sample function being record')
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
