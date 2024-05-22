@@ -30,7 +30,6 @@ def set_page_layout():
         initial_sidebar_state="expanded"
     )
     
-    agentops.end_session(end_state='Success')
     
 # Function to display main title
 def display_main_title():
@@ -45,7 +44,6 @@ def display_model_config_sidebar():
     confidence = float(st.sidebar.slider(
         "Select Model Confidence", 25, 100, 40)) / 100
     return model_type, confidence
-    agentops.end_session(end_state='Success')
 
 # Function to load pre-trained ML model
 def load_pretrained_model(model_type):
@@ -101,7 +99,6 @@ def display_uploaded_image_and_detection(model, confidence, source_img):
                 except Exception as ex:
                     st.write("No image is uploaded yet!")
 
-    agentops.end_session(end_state='Success')
 
 # Main function
 @agentops.record_function('Main function')
@@ -128,7 +125,6 @@ def main():
     else:
         st.error("Please select a valid source type!")
     record(ActionEvent("event_type1"))
-    agentops.end_session(end_state='Success')
 
 if __name__ == "__main__":
     main()
