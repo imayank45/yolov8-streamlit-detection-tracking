@@ -7,9 +7,16 @@ from pytube import YouTube
 
 import settings
 
+import agentops
+from agentops import record_function
+from agentops import record, ActionEvent
+from agentops.agent import track_agent
 
+agentops.init("8147069b-c82d-461c-b192-d1a7e89c4f47")
 
+agentops.start_session()
 
+@agentops.record_function('model being loaded')
 def load_model(model_path):
     """
     Loads a YOLO object detection model from the specified model_path.
@@ -23,6 +30,7 @@ def load_model(model_path):
     model = YOLO(model_path)
     return model
 
+@track_agent(name='tracker')
 def display_tracker_options():
     display_tracker = st.radio("Display Tracker", ('Yes', 'No'))
     is_display_tracker = True if display_tracker == 'Yes' else False
@@ -30,7 +38,8 @@ def display_tracker_options():
         tracker_type = st.radio("Tracker", ("bytetrack.yaml", "botsort.yaml"))
         return is_display_tracker, tracker_type
     return is_display_tracker, None
-
+    
+@agentops.record_function('Images')
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
     """
     Display the detected objects on a video frame using the YOLOv8 model.
@@ -65,6 +74,7 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
                    )
     
 
+@agentops.record_function('Youtube')
 def play_youtube_video(conf, model):
     """
     Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
@@ -105,6 +115,7 @@ def play_youtube_video(conf, model):
                     break
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
+    record(ActionEvent("event_type1"))
 
 
 def play_rtsp_stream(conf, model):
@@ -231,3 +242,4 @@ def play_stored_video(conf, model):
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
 
+agentops.end_session(end_state='Success')
