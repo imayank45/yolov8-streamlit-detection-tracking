@@ -122,3 +122,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+agentops.end_session(end_state='Success')
