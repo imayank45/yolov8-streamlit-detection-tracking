@@ -29,6 +29,8 @@ def load_model(model_path):
     """
     model = YOLO(model_path)
     return model
+    agentops.end_session(end_state='Success')
+
 
 @track_agent(name='tracker')
 def display_tracker_options():
@@ -116,6 +118,7 @@ def play_youtube_video(conf, model):
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
     record(ActionEvent("event_type1"))
+    agentops.end_session(end_state='Success')
 
 
 def play_rtsp_stream(conf, model):
