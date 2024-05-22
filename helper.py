@@ -12,7 +12,7 @@ from agentops import record_function
 from agentops import record, ActionEvent
 from agentops.agent import track_agent
 
-agentops.init("8147069b-c82d-461c-b192-d1a7e89c4f47")
+agentops.init("3a283ba1-5c88-4697-b0d9-e8e4667dc431")
 
 agentops.start_session()
 
