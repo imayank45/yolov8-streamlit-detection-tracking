@@ -8,20 +8,14 @@ import streamlit as st
 # Local Modules
 import settings
 import helper
-import agentops
-from agentops import record_function
-from agentops import record, ActionEvent
-from agentops.agent import track_agent
 
 
-agentops.init("8147069b-c82d-461c-b192-d1a7e89c4f47")
 
-agentops.start_session()
+
 
 
 # Function to set page configuration
 
-@agentops.record_function('Setup page config')
 def set_page_layout():
     st.set_page_config(
         page_title="Object Detection using YOLOv8",
@@ -36,7 +30,6 @@ def display_main_title():
     st.title("Object Detection And Tracking using YOLOv8")
 
 # Function to display ML model configuration sidebar
-@track_agent(name='sidebar')
 def display_model_config_sidebar():
     st.sidebar.header("ML Model Config")
     model_type = st.sidebar.radio(
@@ -67,7 +60,6 @@ def display_image_video_config_sidebar():
     return source_radio
 
 # Function to display uploaded image and detect objects
-@agentops.record_function('Images')
 def display_uploaded_image_and_detection(model, confidence, source_img):
     col1, col2 = st.columns(2)
     with col1:
@@ -101,7 +93,6 @@ def display_uploaded_image_and_detection(model, confidence, source_img):
 
 
 # Main function
-@agentops.record_function('Main function')
 def main():
     set_page_layout()
     display_main_title()
@@ -124,9 +115,8 @@ def main():
         helper.play_youtube_video(confidence, model)
     else:
         st.error("Please select a valid source type!")
-    record(ActionEvent("event_type1"))
+    
 
 if __name__ == "__main__":
     main()
 
-agentops.end_session(end_state='Success')
