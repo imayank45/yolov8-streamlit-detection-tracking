@@ -3,6 +3,8 @@ import time
 import streamlit as st
 import cv2
 from pytube import YouTube
+from agentops.agent import track_agent
+
 
 import settings
 import agentops
@@ -70,7 +72,7 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
                    )
     agentops.end_session(end_state='Success')
 
-
+@track_agent(name='youtube')
 def play_youtube_video(conf, model):
     """
     Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
@@ -236,3 +238,5 @@ def play_stored_video(conf, model):
                     break
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
+
+agentops.end_session(end_state='Success')
