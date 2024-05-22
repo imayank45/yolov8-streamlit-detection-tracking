@@ -32,7 +32,6 @@ def load_model(model_path):
     agentops.end_session(end_state='Success')
 
 
-@track_agent(name='tracker')
 def display_tracker_options():
     display_tracker = st.radio("Display Tracker", ('Yes', 'No'))
     is_display_tracker = True if display_tracker == 'Yes' else False
@@ -78,7 +77,7 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
                    )
     
 
-@agentops.record_function('Youtube')
+@track_agent(name='tracker')
 def play_youtube_video(conf, model):
     """
     Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
