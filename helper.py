@@ -39,7 +39,9 @@ def display_tracker_options():
     if is_display_tracker:
         tracker_type = st.radio("Tracker", ("bytetrack.yaml", "botsort.yaml"))
         return is_display_tracker, tracker_type
+    record(ActionEvent("event_type1"))
     return is_display_tracker, None
+
     
 @agentops.record_function('Images')
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
