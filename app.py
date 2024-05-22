@@ -9,8 +9,17 @@ import streamlit as st
 import settings
 import helper
 import agentops
+from agentops import record_function
+from agentops import record, ActionEvent
+
+agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
+
+agentops.start_session()
+
 
 # Function to set page configuration
+
+@agentops.record_function('Setup page config')
 def set_page_layout():
     st.set_page_config(
         page_title="Object Detection using YOLOv8",
@@ -18,7 +27,9 @@ def set_page_layout():
         layout="wide",
         initial_sidebar_state="expanded"
     )
-
+    
+    agentops.end_session(end_state='Success')
+    
 # Function to display main title
 def display_main_title():
     st.title("Object Detection And Tracking using YOLOv8")
