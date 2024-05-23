@@ -6,6 +6,9 @@ from pytube import YouTube
 
 import settings
 import agentops
+from agentops import ActionEvent
+
+
 agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 agentops.start_session()
 
@@ -107,6 +110,8 @@ def play_youtube_video(conf, model):
                     break
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
+            
+    agentops.record(ActionEvent(action_type="detect objects", params=str(model), returns=str(model) ))
 
 @agentops.record_function('stream')
 def play_rtsp_stream(conf, model):
