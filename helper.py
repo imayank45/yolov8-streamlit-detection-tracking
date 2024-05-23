@@ -5,6 +5,8 @@ import cv2
 from pytube import YouTube
 
 import settings
+import agentops
+agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 
 
 def load_model(model_path):
