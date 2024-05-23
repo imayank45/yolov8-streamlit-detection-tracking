@@ -66,7 +66,7 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
                    use_column_width=True
                    )
 
-
+@agentops.record_function('youtube')
 def play_youtube_video(conf, model):
     """
     Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
@@ -108,7 +108,7 @@ def play_youtube_video(conf, model):
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
 
-
+@agentops.record_function('stream')
 def play_rtsp_stream(conf, model):
     """
     Plays an rtsp stream. Detects Objects in real-time using the YOLOv8 object detection model.
@@ -150,7 +150,7 @@ def play_rtsp_stream(conf, model):
             vid_cap.release()
             st.sidebar.error("Error loading RTSP stream: " + str(e))
 
-
+@agentops.record_function('webcam')
 def play_webcam(conf, model):
     """
     Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
@@ -187,7 +187,7 @@ def play_webcam(conf, model):
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
 
-
+@agentops.record_function('play_stored_video')
 def play_stored_video(conf, model):
     """
     Plays a stored video file. Tracks and detects objects in real-time using the YOLOv8 object detection model.
