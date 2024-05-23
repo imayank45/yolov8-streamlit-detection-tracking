@@ -10,7 +10,6 @@ agentops.init("72eb757c-3438-46cf-9eb8-7efbb0b301d6")
 agentops.start_session()
 
 
-@agentops.record_function('load_model')
 def load_model(model_path):
     """
     Loads a YOLO object detection model from the specified model_path.
@@ -33,7 +32,7 @@ def display_tracker_options():
         return is_display_tracker, tracker_type
     return is_display_tracker, None
 
-
+@agentops.record_function('display')
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
     """
     Display the detected objects on a video frame using the YOLOv8 model.
