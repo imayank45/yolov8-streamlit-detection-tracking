@@ -237,3 +237,4 @@ def play_stored_video(conf, model):
                     break
         except Exception as e:
             st.sidebar.error("Error loading video: " + str(e))
+agentops.end_session('Success')
